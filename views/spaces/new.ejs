@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+	<h1 class="text-center">Add Your Space</h1>
+	<div class="col-md-6 offset-md-3">
+		<form class="validated-form" action="/spaces" method="POST" novalidate enctype="multipart/form-data">
+			<div class="mb-3">
+				<label class="form-label" for="title">Title</label>
+				<input class="form-control" type="text" id="title" name="space[title]" required>
+				<div class="valid-feedback">
+					Looks Good!
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="location">Location</label>
+				<input class="form-control" type="text" id="location" name="space[location]" required>
+				<div class="valid-feedback">
+					Perfect!
+				</div>
+			</div>
+			<!--<div class="mb-3">
+				<label class="form-label" for="image">Image Url</label>
+				<input class="form-control" type="text" id="image" name="space[image]" required>
+				<div class="valid-feedback">
+					Good To Go!
+				</div>
+			</div>-->
+			<div class="mb-3">
+				<label class="form-label" for="description">Description</label>
+				<textarea class="form-control" type="text" id="description" name="space[description]" required></textarea>
+				<div class="invalid-feedback">
+					Please Give The Description In Less Than 100 Words.
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="price" required>Price</label>
+				<div class="input-group">
+				  	<span class="input-group-text">$</span>
+					<input type="text" class="form-control" placeholde="0" id="price" aria-label="Amount (to the nearest dollar)" name="space[price]" required>
+					<span class="input-group-text">.00</span>
+					<div class="valid-feedback">
+						Make Sure It's A Valid Amount!
+					</div>
+				</div>
+			</div>
+			<div class="mb-3">
+                <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div>
+            </div>
+			<div class="mb-3">
+				<button class="btn btn-success">Add Your Campground</button>
+			</div>
+		</form>
+		<a href="/spaces">Go back</a>
+	</div>
+</div>
+

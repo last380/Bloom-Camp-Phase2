@@ -1,0 +1,62 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+	<h1 class="text-center">Edit Your Space</h1>
+	<div class="col-md-6 offset-md-3">
+		<form class="validated-form" action="/spaces/<%= space._id %>?_method=PUT" method="POST" novalidate enctype="multipart/form-data">
+			<div class="mb-3">
+				<label class="form-label" for="title">Title</label>
+				<input class="form-control" type="text" id="title" name="space[title]" value="<%=space.title%>" required>
+				<div class="valid-feedback">
+					Looks Good!
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="location">Location</label>
+				<input class="form-control" type="text" id="location" name="space[location]" value="<%=space.location%>" required>
+				<div class="valid-feedback">
+					Perfect!
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="description">Description</label>
+				<textarea class="form-control" type="text" id="description" name="space[description]" required><%= space.description %></textarea>
+				<div class="valid-feedback">
+					Please Give The Description In Less Than 100 Words.
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="price">Price</label>
+				<div class="input-group">
+				  	<span class="input-group-text">$</span>
+					<input type="text" class="form-control" placeholde="0" id="price" aria-label="Amount (to the nearest dollar)" name="space[price]" value="<%=space.price%>" required>
+					<span class="input-group-text">.00</span>
+					<div class="valid-feedback">
+						Make Sure It's A Valid Amount!
+					</div>
+				</div>
+			</div>
+			<div class="mb-3">
+                <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Add more image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div>
+            </div>
+			<div class="mb-3">
+				<% space.images.forEach(function(img, i) {  %>
+					<img src="<%=img.thumbnail %>" class="img-thumbnail" alt="<%= space.title %>">
+					<div class="form-check-inline">
+						<input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+					</div>
+					<label for="image-<%=i%>">Delete?</label>
+				<% })%>
+			</div>
+			<div class="mb-3">
+				<button class="btn btn-info">Update Your Campground</button>
+			</div>
+		</form>
+		<a href="/spaces/<%= space._id %>">Go back</a>
+	</div>
+</div>
